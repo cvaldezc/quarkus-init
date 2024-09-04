@@ -21,7 +21,7 @@ public class EcoResource {
     return "Hello, " + name;
   }
 
-  @GET
+ @GET
   @Path("/morning")
   public String morning() {
     return "good morning";

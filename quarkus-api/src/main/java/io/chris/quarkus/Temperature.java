@@ -10,9 +10,21 @@ public class Temperature {
     
   }
 
-  public Temperae(String city, int, min, int max) {
+  public Temperature(String city, int min, int max) {
     this.city = city;
     this.min = min;
     this.max = max;
   }
+
+  public String getCity() {
+    return this.city;
+  }
+
+  public int getMin() {
+    return this.min;
+  }
+
+  public int getMax() {
+    return this.max;
+  } 
 }
