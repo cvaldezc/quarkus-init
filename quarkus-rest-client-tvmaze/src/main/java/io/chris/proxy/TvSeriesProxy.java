@@ -14,6 +14,6 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 public interface TvSeriesProxy {
 
     @GET
-    @Path("/shows")
+    @Path("/showsW")
     TvSerie get(@QueryParam("q") String title);
 }

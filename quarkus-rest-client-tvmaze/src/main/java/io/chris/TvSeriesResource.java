@@ -8,6 +8,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import java.util.ArrayList;
@@ -24,8 +25,17 @@ public class TvSeriesResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response get(@QueryParam("title") String title) {
-        TvSerie tvSerie =  proxy.get(title);
+        TvSerie tvSerie = getTvSeries(title);
         tvSeries.add(tvSerie);
         return Response.ok(tvSeries).build();
+    }
+
+    @Fallback(fallbackMethod = "fallbackGetTvSeries")
+    public TvSerie getTvSeries(String title) {
+        return proxy.get(title);
+    }
+
+    private TvSerie fallbackGetTvSeries(String title) {
+        return new TvSerie();
     }
 }
